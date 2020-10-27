@@ -1,0 +1,32 @@
+
+<div class="card border-primary mb-3">
+    <div class="card-header">
+      Juegos
+    </div>
+    <div class="card-body text-primary">
+        <table class="table table-bordered table-striped">
+            
+            <thead>
+                <!--showId en juegos.component.ts-->
+                <th *ngIf="showId">ID</th>
+                <th>Titulo</th>
+                <th>Fecha Lanzamiento</th>
+                <th>Precio</th>
+                <th>PEGI</th>
+                <th>Categoria</th>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let juego of juegos">
+                    <td *ngIf="showId">{{juego.idJuego}}</td>
+                    <td>{{juego.titulo}}</td>
+                    <td>{{juego.fechaLanzamiento}}</td>
+                    <td>{{juego.precio}}</td>
+                    <td>{{juego.pegi}}</td>
+                    <td>{{juego.categoria}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+  </div>
