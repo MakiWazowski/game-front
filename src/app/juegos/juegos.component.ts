@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Juego } from './juego';
+import { JuegoService } from './juego.service';
 
 @Component({
   selector: 'app-juegos',
@@ -7,17 +8,31 @@ import { Juego } from './juego';
   styleUrls: ['./juegos.component.css']
 })
 export class JuegosComponent implements OnInit {
-//mostrar u ocultar columna del id en la tabla del juegos.component.html
+
+  //mostrar u ocultar columna del id en la tabla del juegos.component.html
 showId: boolean= false;
+
 //creamos variable juego con los juegos
-juegos:Juego[] = [{idJuego: 1, titulo: 'Maniac Mansion', categoria: 'Aventura Gráfica', fechaLanzamiento: '1987-10-05', pegi: 12, precio: 5},
-{idJuego: 2, titulo: 'Doom', categoria: 'Shooter', fechaLanzamiento: '1993-12-01', pegi: 15, precio: 10},
-{idJuego: 3, titulo: 'Counter-Strike', categoria: 'Shooter', fechaLanzamiento: '2000-11-09', pegi: 16, precio: 15},
-{idJuego: 4, titulo: 'Fortnite', categoria: 'MMO / MOBA ?', fechaLanzamiento: '2017-07-21', pegi: 16, precio: 20}]
+juegos:Juego[] = [];
 
-  constructor() { }
+//declaramos el servicio de juego en el constructor
+  constructor(private juegoService: JuegoService) {
 
+   }
+
+//metodo para activar y desactivar el id con el boton de juegos.component.html
+switchId(): void {
+  this.showId = !this.showId;
+}
+
+//cuando el componente se inicializa (JuegosComponent)
   ngOnInit(): void {
+    //iniciamos variable juego
+    this.juegoService.getJuegos().subscribe(
+      //el subscribe cuando ya ese observable tiene valor(la peticion termina)entra aqui
+      //asignas a juegos de arriba la lista de juegos cogidos en el service
+      listJuegos => this.juegos = listJuegos
+    );
   }
 
 }

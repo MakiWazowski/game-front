@@ -2,6 +2,9 @@
 <div class="card border-primary mb-3">
     <div class="card-header">
       Juegos
+      <!--boton para mostrar y ocultar el id -->
+      <!--(click)="showId = !showId"-->
+      <button type="button" class="btn btn-primary float-right" (click)="switchId()" >{{ showId ? 'Ocultar' : 'Mostrar' }} ID </button>
     </div>
     <div class="card-body text-primary">
         <table class="table table-bordered table-striped">
@@ -20,10 +23,11 @@
                 <tr *ngFor="let juego of juegos">
                     <td *ngIf="showId">{{juego.idJuego}}</td>
                     <td>{{juego.titulo}}</td>
-                    <td>{{juego.fechaLanzamiento}}</td>
+                    <!--le damos formato a la fecha-->
+                    <td>{{juego.fechaLanzamiento | date: "dd-MM-yyyy"}}</td>
                     <td>{{juego.precio}}</td>
                     <td>{{juego.pegi}}</td>
-                    <td>{{juego.categoria}}</td>
+                    <td>{{juego.categoria | uppercase}}</td>
                 </tr>
             </tbody>
 
