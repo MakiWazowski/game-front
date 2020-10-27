@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { JuegosComponent } from './juegos/juegos.component';
 import { JuegoService } from './juegos/juego.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   //declaramos los componentes
   declarations: [
     AppComponent,
     FooterComponent,
-    JuegosComponent
+    JuegosComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule
