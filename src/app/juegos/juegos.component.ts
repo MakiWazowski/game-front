@@ -13,7 +13,7 @@ export class JuegosComponent implements OnInit {
 showId: boolean= false;
 
 //creamos variable juego con los juegos
-juegos:Juego[] = [];
+juegos:Juego[];
 
 //declaramos el servicio de juego en el constructor
   constructor(private juegoService: JuegoService) {

@@ -7,6 +7,7 @@ import{catchError} from 'rxjs/operators'
 import {Observable,of, throwError} from 'rxjs'
 //libreria de angular para hacer peticiones
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable()
 export class JuegoService {
@@ -15,7 +16,7 @@ export class JuegoService {
   urlServer: string = 'http://localhost:8090/'
 
   //inyectamos la libreria de peticiones
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private alertService: AlertService) { }
 
   //definimos metodo para obtener los juegos , devuelve un observable del ARRAY de juego
   getJuegos(): Observable<Juego[]> {
@@ -25,9 +26,11 @@ export class JuegoService {
 
     //peticion al backend por la url 
     //pipe es similar al subscribe,pero permite realizar durante la espera operaciones dentro del observable
-    return this.http.get<Juego[]>(this.urlServer + 'asd').pipe(
+    return this.http.get<Juego[]>(this.urlServer + 'juegos').pipe(
     catchError(e => {
       console.error(`getJuegos error: "${e.message}"`);
+      //mensaje de alerta
+      this.alertService.error(`error al consultar los juegos: "${e.message}"`,{autoClose:true,keepAfterRouteChange: false});
       return throwError(e);
     })
         );

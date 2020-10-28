@@ -7,6 +7,7 @@ import { JuegosComponent } from './juegos/juegos.component';
 import { JuegoService } from './juegos/juego.service';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   //declaramos los componentes
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     FooterComponent,
     JuegosComponent,
-    HeaderComponent
+    HeaderComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
