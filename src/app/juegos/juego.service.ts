@@ -25,9 +25,9 @@ export class JuegoService {
 
     //peticion al backend por la url 
     //pipe es similar al subscribe,pero permite realizar durante la espera operaciones dentro del observable
-    return this.http.get<Juego[]>(this.urlServer + 'juegos').pipe(
+    return this.http.get<Juego[]>(this.urlServer + 'asd').pipe(
     catchError(e => {
-      console.error('getJuegos error: "${e.mensaje}"');
+      console.error(`getJuegos error: "${e.message}"`);
       return throwError(e);
     })
         );
