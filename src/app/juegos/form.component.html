@@ -1,0 +1,25 @@
+<div class="card bg-light">
+    <div class="card-header ">{{ title }}</div>
+    <div class="card-body text-primary">
+        
+        <form (ngSubmit)="create()">
+
+            <div class="form-group row">
+
+                <label for="titulo" class="col-form-label col-sm-3">Título</label>
+                <div class="card-body text-primary">
+                    <!--[(ngModel)] es una propiedad para actualizar los datos de una variable/objeto definido en el componente, es bidireccional-->
+                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo">
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary">Crear</button>
+                <button class="btn btn-secondary ml-2" routerLink="/juegos" type="button">Cancelar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

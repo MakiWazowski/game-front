@@ -10,6 +10,12 @@ Error al consultar los juegos
   No hay juegos
 </div>
 
+<!--boton crear juego-->
+<div class="my-5 pr-4 text-right">
+    <button class="btn btn-primary" type="button" routerLink="/juegos/form">Crear Juego</button>
+</div>
+
+
 <div class="card border-primary mb-3" *ngIf="juegos?.length > 0 ">
     <div class="card-header">
       Juegos
