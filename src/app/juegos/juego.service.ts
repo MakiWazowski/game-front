@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Juego } from './juego';
 import { JUEGOS } from './juegos.json';
+import{catchError} from 'rxjs/operators'
+
 //libreria
-import {Observable,of} from 'rxjs'
+import {Observable,of, throwError} from 'rxjs'
 //libreria de angular para hacer peticiones
 import { HttpClient } from '@angular/common/http';
 
@@ -22,6 +24,12 @@ export class JuegoService {
     //return of(JUEGOS);
 
     //peticion al backend por la url 
-    return this.http.get<Juego[]>(this.urlServer + 'juegos');
+    //pipe es similar al subscribe,pero permite realizar durante la espera operaciones dentro del observable
+    return this.http.get<Juego[]>(this.urlServer + 'juegos').pipe(
+    catchError(e => {
+      console.error('getJuegos error: "${e.mensaje}"');
+      return throwError(e);
+    })
+        );
   }
 }
