@@ -1,5 +1,15 @@
 
-<div class="card border-primary mb-3">
+<!--div de alert para mostrar errores-->
+<div *ngIf="!juegos"  class="alert alert-danger">
+Error al consultar los juegos
+</div>
+
+<!--div de informacion para mostrar mensaje-->
+<div  *ngIf="juegos?.length == 0 " class="alert alert-danger">
+    No hay juegos
+</div>
+
+<div class="card border-primary mb-3" *ngIf="juegos?.length > 0 ">
     <div class="card-header">
       Juegos
       <!--boton para mostrar y ocultar el id -->
