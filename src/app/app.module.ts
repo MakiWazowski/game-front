@@ -19,7 +19,7 @@ const ROUTES : Routes = [
   {path:'', redirectTo:'/juegos',pathMatch:'full'},
   {path: 'juegos' , component: JuegosComponent},
   {path: 'juegos/form' , component: JuegosFormComponent},
-  {path: 'companies' , component: JuegosComponent}
+  {path: 'companies' , component: CompaniesComponent}
 ]
 
 @NgModule({

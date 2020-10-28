@@ -11,7 +11,7 @@ export class FormComponent implements OnInit {
 //creamos variable juego
 juego: Juego = new Juego();
 //creamos variable titulo
-private title: string = 'Crear Juego';
+title: string = 'Crear Juego';
 
   constructor() { }
 
