@@ -44,6 +44,16 @@ companies:Company[]
     );
   }
 
+  //metodo para editar juego
+  update(): void {
+    //mostrar por consola el juego que estamos creando
+    console.log(this.juego);
+    this.juegoService.updateJuego(this.juego).subscribe(
+      //usamos el enrutado para navegar al listado de juegos
+      response=> this.router.navigate(['/juegos'])
+    );
+  }
+
   loadCompanies(): void{
     this.companyService.getCompanies().subscribe(
       //asignas a juegos de arriba la lista de juegos cogidos en el service
