@@ -2,7 +2,7 @@
     <div class="card-header ">{{ title }}</div>
     <div class="card-body text-primary">
         
-        <form (ngSubmit)="create()">
+        <form>
 
             <div class="form-group row">
 
@@ -65,7 +65,8 @@
             </div>
 
             <div class="col-sm-6">
-                <button class="btn btn-primary">Crear</button>
+                <button class="btn btn-primary" (click)="create()" *ngIf="!juego.idJuego">Crear</button>
+                <button class="btn btn-primary" (click)="update()" *ngIf="juego.idJuego">Editar</button>
                 <button class="btn btn-secondary ml-2" routerLink="/juegos" type="button">Cancelar</button>
             </div>
 
