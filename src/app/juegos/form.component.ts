@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from '../companies/company';
 import { CompanyService } from '../companies/company.service';
 import { Juego } from './juego';
@@ -27,13 +27,11 @@ categorias: any[] = [{title: 'Shooter', value: 'SHOOTER'}, {title: 'MOBA', value
 //creamos listado de compañias
 companies:Company[]
 
-  constructor(private juegoService: JuegoService,private companyService: CompanyService, private router:Router) { }
+  constructor(private juegoService: JuegoService,private companyService: CompanyService, private router:Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.companyService.getCompanies().subscribe(
-      //asignas a juegos de arriba la lista de juegos cogidos en el service
-      listCompanies => this.companies = listCompanies
-    );
+    this.loadCompanies();
+    this.loadJuego();
   }
 
   //metodo para crear juego
@@ -46,4 +44,44 @@ companies:Company[]
     );
   }
 
+  loadCompanies(): void{
+    this.companyService.getCompanies().subscribe(
+      //asignas a juegos de arriba la lista de juegos cogidos en el service
+      listCompanies => this.companies = listCompanies
+    );
+  }
+
+
+  loadJuego(): void{
+    //cargamos el juego segun el parametro que nos viene en la ruta
+    this.activatedRoute.params.subscribe(params=>{
+
+      //creamos constante id
+      const id = params.id;
+
+      //si hay id obtiene el juego con ese id para editarlo
+      if(id){
+        this.title= "Editar Juego";
+        //lamamos al getJuego que corresponde con ese id
+        this.juegoService.getJuego(id).subscribe(
+          //sustituimos con el juego seleccionado 
+          juego=> this.juego = juego
+        );
+      }
+      //si no tiene id lo hace como siempre
+      else{
+        this.title= "Crear Juego";
+      }
+
+    });
+  }
+
+  //para que nos seleccione las compañias seleccionadas de un juego al editar
+  compareCompany(companyToCompare: Company,companySelected: Company){
+    if(!companyToCompare|| !companySelected){
+      return false;
+    }
+    //comparamos el id con el seleccionado
+    return companyToCompare.idCompany === companySelected.idCompany;
+  }
 }

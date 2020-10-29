@@ -57,8 +57,7 @@
 
                 <label for="company" class="col-form-label col-sm-3">Compañía</label>
                 <div class="col-sm-6">
-                    <!--[compareWith]="compareCompanies"-->
-                    <select name="companies" class="form-control" [(ngModel)]="juego.companies" multiple>
+                    <select name="companies" class="form-control" [(ngModel)]="juego.companies" [compareWith]="compareCompany" multiple>
                         <option *ngFor="let companyOption of companies" [ngValue]="companyOption">{{companyOption.nombre}}</option>
                     </select>
                 </div>

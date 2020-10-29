@@ -20,6 +20,8 @@ const ROUTES : Routes = [
   {path:'', redirectTo:'/juegos',pathMatch:'full'},
   {path: 'juegos' , component: JuegosComponent},
   {path: 'juegos/form' , component: JuegosFormComponent},
+  //si damos un numero le añadimos a la ruta un id
+  {path: 'juegos/form/:id' , component: JuegosFormComponent},
   {path: 'companies' , component: CompaniesComponent}
 ]
 

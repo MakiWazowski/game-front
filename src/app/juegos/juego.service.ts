@@ -8,6 +8,7 @@ import {Observable,of, throwError} from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { JuegosComponent } from './juegos.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class JuegoService {
@@ -16,8 +17,8 @@ export class JuegoService {
   //url de conexion al backend
   urlServer: string = 'http://localhost:8090/'
 
-  //inyectamos la libreria de peticiones
-  constructor(private http: HttpClient, private alertService: AlertService) { }
+  //inyectamos las librerias , servicios y el enrutador
+  constructor(private http: HttpClient, private alertService: AlertService, private activatedRoute: ActivatedRoute) { }
 
   //definimos metodo para obtener los juegos , devuelve un observable del ARRAY de juego
   getJuegos(): Observable<Juego[]> {
