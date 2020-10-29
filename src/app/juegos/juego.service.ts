@@ -6,12 +6,14 @@ import{catchError} from 'rxjs/operators'
 //libreria
 import {Observable,of, throwError} from 'rxjs'
 //libreria de angular para hacer peticiones
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
+import { JuegosComponent } from './juegos.component';
 
 @Injectable()
 export class JuegoService {
 
+  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   //url de conexion al backend
   urlServer: string = 'http://localhost:8090/'
 
@@ -34,5 +36,16 @@ export class JuegoService {
       return throwError(e);
     })
         );
+  }
+
+  //metodo para crear el juego
+  create(juego: Juego): Observable<Juego> {
+    return this.http.post<Juego>(this.urlServer + 'juegos', juego, {headers: this.httpHeaders}).pipe(
+      catchError(e => {
+        console.error(`create error: "${e.message}"`);
+        this.alertService.error(`Error al crear el juego: "${e.message}"`);
+        return throwError(e);
+      })
+    );
   }
 }

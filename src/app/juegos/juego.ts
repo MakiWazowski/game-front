@@ -1,3 +1,5 @@
+import { Company } from '../companies/company';
+
 export class Juego {
 
     idJuego:number;
@@ -6,6 +8,6 @@ export class Juego {
     precio:number;
     pegi:number;
     categoria:string;
-    //companies: Company[];
+    companies: Company[];
 
 }

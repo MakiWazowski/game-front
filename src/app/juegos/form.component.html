@@ -9,10 +9,50 @@
                 <label for="titulo" class="col-form-label col-sm-3">Título</label>
                 <div class="card-body text-primary">
                     <!--[(ngModel)] es una propiedad para actualizar los datos de una variable/objeto definido en el componente, es bidireccional-->
-                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo">
+                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Título" maxlength="255">
                 </div>
 
             </div>
+
+            <div class="form-group row">
+
+                <label for="fechaLanzamiento" class="col-form-label col-sm-3">Fecha Lanzamiento</label>
+                <div class="card-body text-primary">
+                    <!--en caso de type="text" usamos placeholder="yyyy-MM-dd" para mostrar el formato requerido-->
+                    <input name="fechaLanzamiento" type="date" class="form-control" [(ngModel)]="juego.fechaLanzamiento" >
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+
+                <label for="precio" class="col-form-label col-sm-3">Precio</label>
+                <div class="card-body text-primary">
+                    <input name="precio" type="number" min="0" class="form-control" [(ngModel)]="juego.precio" >
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+
+                <label for="pegi" class="col-form-label col-sm-3">Fecha Lanzamiento</label>
+                <div class="card-body text-primary">
+                    <input name="pegi" type="number" max="18" class="form-control" [(ngModel)]="juego.pegi" >
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+
+                <label for="categoria" class="col-form-label col-sm-3">Categoría</label>
+                <div class="col-sm-6">
+                    <select name="categoria" type="number" max="18" class="form-control" [(ngModel)]="juego.categoria" >
+                        <option *ngFor="let categoriaOption of categorias" [ngValue]="categoriaOption.value">{{categoriaOption.title}}</option>
+                    </select>
+                </div>
+                
+            </div>
+
             <div class="col-sm-6">
                 <button class="btn btn-primary">Crear</button>
                 <button class="btn btn-secondary ml-2" routerLink="/juegos" type="button">Cancelar</button>

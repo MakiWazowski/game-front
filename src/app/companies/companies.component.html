@@ -1,1 +1,36 @@
-<p>companies works!</p>
+<!--div de informacion para mostrar mensaje-->
+<div *ngIf="companies?.length == 0" class="alert alert-info">
+    No hay companies
+  </div>
+
+  <div class="card border-primary mb-3" *ngIf="companies?.length > 0 ">
+      <div class="card-header">
+        Companías
+        <!--boton para mostrar y ocultar el id -->
+        <!--(click)="showId = !showId"-->
+        <button type="button" class="btn btn-primary float-right" (click)="switchId()" >{{ showId ? 'Ocultar' : 'Mostrar' }} ID </button>
+      </div>
+      <div class="card-body text-primary">
+          <table class="table table-bordered table-striped">
+              
+              <thead>
+                  <!--showId en companies.component.ts-->
+                  <th *ngIf="showId">ID</th>
+                  <th>Nombre</th>
+                  <th>CIF</th>
+                  <th>Juegos</th>
+              </thead>
+  
+              <tbody>
+                  <tr *ngFor="let company of companies">
+                      <td *ngIf="showId">{{company.idCompany}}</td>
+
+                      <td>{{company.nombre}}</td>
+                      <td>{{company.cif}}</td>
+                      <td> <span *ngFor="let juego of company.juegos">{{company.juegos}}</span></td>
+                    </tr>
+              </tbody>
+  
+          </table>
+      </div>
+    </div>
