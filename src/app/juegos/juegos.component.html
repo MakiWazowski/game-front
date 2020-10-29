@@ -45,6 +45,7 @@ Error al consultar los juegos
                     <td>{{juego.precio}}</td>
                     <td>{{juego.pegi}}</td>
                     <td>{{juego.categoria | uppercase}}</td>
+                    <td> <span *ngFor="let company of juego.companies; index as i">{{company.nombre}} {{(juego.companies.length > 1 && i < juego.companies.length - 1) ? ', ' : ''}}</span></td>
                 </tr>
             </tbody>
 

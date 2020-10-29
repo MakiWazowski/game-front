@@ -9,29 +9,26 @@ import { CompanyService } from './company.service';
 })
 export class CompaniesComponent implements OnInit {
 
-  
-  
-    //mostrar u ocultar columna del id en la tabla del juegos.component.html
+//mostrar u ocultar columna del id en la tabla del companies.component.html
 showId: boolean= false;
 
 //creamos variable company con las compañias
 companies:Company[];
 
-//declaramos el servicio de juego en el constructor
-  constructor(private juegoService: CompanyService) {
+//declaramos el servicio de company en el constructor
+  constructor(private companyService: CompanyService) {
 
    }
 
-//metodo para activar y desactivar el id con el boton de juegos.component.html
+//metodo para activar y desactivar el id con el boton de companies.component.html
 switchId(): void {
   this.showId = !this.showId;
 }
 
-//cuando el componente se inicializa (JuegosComponent)
+//cuando el componente se inicializa (CompaniesComponent)
   ngOnInit(): void {
     //iniciamos variable juego
-    this.juegoService.getCompanies().subscribe(
-      //el subscribe cuando ya ese observable tiene valor(la peticion termina)entra aqui
+    this.companyService.getCompanies().subscribe(
       //asignas a juegos de arriba la lista de juegos cogidos en el service
       listCompanies => this.companies = listCompanies
     );

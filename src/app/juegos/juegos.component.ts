@@ -9,7 +9,7 @@ import { JuegoService } from './juego.service';
 })
 export class JuegosComponent implements OnInit {
 
-  //mostrar u ocultar columna del id en la tabla del juegos.component.html
+//mostrar u ocultar columna del id en la tabla del juegos.component.html
 showId: boolean= false;
 
 //creamos variable juego con los juegos

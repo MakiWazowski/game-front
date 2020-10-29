@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Juego } from './juego';
-import { JUEGOS } from './juegos.json';
 import{catchError} from 'rxjs/operators'
 
 //libreria

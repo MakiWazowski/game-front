@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from './companies/companies.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent as JuegosFormComponent } from './juegos/form.component';
+import { CompanyService } from './companies/company.service';
 
 
 //constante de enrutador
@@ -43,7 +44,7 @@ const ROUTES : Routes = [
     FormsModule
   ],
   //declaramos los servicios
-  providers: [JuegoService],
+  providers: [JuegoService,CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
