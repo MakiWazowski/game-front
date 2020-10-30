@@ -13,6 +13,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent as JuegosFormComponent } from './juegos/form.component';
 import { CompanyService } from './companies/company.service';
+import { LoginComponent } from './login/login.component';
 
 
 //constante de enrutador
@@ -35,7 +36,8 @@ const ROUTES : Routes = [
     AlertComponent,
     CompaniesComponent,
     JuegosFormComponent,
-    JuegosFormComponent
+    JuegosFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
