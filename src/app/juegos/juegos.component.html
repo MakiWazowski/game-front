@@ -42,6 +42,7 @@ Error al consultar los juegos
                 <th>PEGI</th>
                 <th>Categoria</th>
                 <th>Compañías</th>
+                <th>Acciones</th>
             </thead>
 
             <tbody>
@@ -54,6 +55,9 @@ Error al consultar los juegos
                     <td>{{juego.pegi}}</td>
                     <td>{{juego.categoria | uppercase}}</td>
                     <td> <span *ngFor="let company of juego.companies; index as i">{{company.nombre}} {{(juego.companies.length > 1 && i < juego.companies.length - 1) ? ', ' : ''}}</span></td>
+                    <td>
+                        <button type="button" [routerLink]="['form', juego.idJuego]" class="btn btn-primary">Editar</button>
+                    </td>
                 </tr>
             </tbody>
 
