@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../alert/alert.service';
 import { Company } from '../companies/company';
 import { CompanyService } from '../companies/company.service';
 import { Juego } from './juego';
@@ -27,7 +28,7 @@ categorias: any[] = [{title: 'Shooter', value: 'SHOOTER'}, {title: 'MOBA', value
 //creamos listado de compañias
 companies:Company[]
 
-  constructor(private juegoService: JuegoService,private companyService: CompanyService, private router:Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private juegoService: JuegoService,private alertService: AlertService, private companyService: CompanyService, private router:Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadCompanies();
@@ -38,9 +39,13 @@ companies:Company[]
   create(): void {
     //mostrar por consola el juego que estamos creando
     console.log(this.juego);
-    this.juegoService.create(this.juego).subscribe(
+    this.juegoService.create(this.juego).subscribe(juego=> {
+      //mensaje alerta
+      this.alertService.success(`Se ha creado correctamente el juego: "${juego.titulo}" con Id: ${juego.idJuego}`, {autoClose: true});  
       //usamos el enrutado para navegar al listado de juegos
-      response=> this.router.navigate(['/juegos'])
+      //response=> 
+      this.router.navigate(['/juegos'])
+    }
     );
   }
 
@@ -48,10 +53,13 @@ companies:Company[]
   update(): void {
     //mostrar por consola el juego que estamos creando
     console.log(this.juego);
-    this.juegoService.updateJuego(this.juego).subscribe(
+    this.juegoService.updateJuego(this.juego).subscribe(juego=> {
+      //mensaje alerta
+      this.alertService.success(`Se ha actualizado correctamente el juego: "${juego.titulo}" con Id: ${juego.idJuego}`, {autoClose: true});  
       //usamos el enrutado para navegar al listado de juegos
-      response=> this.router.navigate(['/juegos'])
-    );
+      this.router.navigate(['/juegos'])
+    }
+      );
   }
 
   loadCompanies(): void{

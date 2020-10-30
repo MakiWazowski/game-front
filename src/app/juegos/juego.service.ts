@@ -32,7 +32,7 @@ export class JuegoService {
     catchError(e => {
       console.error(`getJuegos error: "${e.message}"`);
       //mensaje de alerta
-      this.alertService.error(`error al consultar los juegos: "${e.message}"`,{autoClose:true,keepAfterRouteChange: false});
+      this.alertService.error(`error al consultar los juegos: "${e.message}"`);
       return throwError(e);
     })
         );
