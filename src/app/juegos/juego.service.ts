@@ -9,7 +9,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertService } from '../alert/alert.service';
 import { JuegosComponent } from './juegos.component';
 import { ActivatedRoute } from '@angular/router';
-import { reverse } from 'dns';
 
 @Injectable()
 export class JuegoService {

@@ -2,14 +2,23 @@
     <div class="card-header ">{{ title }}</div>
     <div class="card-body text-primary">
         
-        <form>
+        <form #juegoForm="ngForm">
 
             <div class="form-group row">
 
                 <label for="titulo" class="col-form-label col-sm-3">Título</label>
                 <div class="card-body text-primary">
                     <!--[(ngModel)] es una propiedad para actualizar los datos de una variable/objeto definido en el componente, es bidireccional-->
-                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Título" maxlength="255">
+                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Título" maxlength="255" required #titulo="ngModel">
+                    <!--para que tengan que rellenar el titulo y mensaje-->
+                    <div class="alert alert-danger" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+                    
+                        <div *ngIf="titulo.errors.required">
+                        Debe rellenar el titulo del juego
+                        </div>
+
+                    </div>
+                    
                 </div>
 
             </div>
@@ -19,7 +28,14 @@
                 <label for="fechaLanzamiento" class="col-form-label col-sm-3">Fecha Lanzamiento</label>
                 <div class="card-body text-primary">
                     <!--en caso de type="text" usamos placeholder="yyyy-MM-dd" para mostrar el formato requerido-->
-                    <input name="fechaLanzamiento" type="date" class="form-control" [(ngModel)]="juego.fechaLanzamiento" >
+                    <input name="fechaLanzamiento" type="date" class="form-control" [(ngModel)]="juego.fechaLanzamiento" required #fechaLanzamiento="ngModel">
+                    <div class="alert alert-danger" *ngIf="fechaLanzamiento.invalid && (fechaLanzamiento.dirty || fechaLanzamiento.touched)">
+                    
+                        <div *ngIf="fechaLanzamiento.errors.required">
+                        Debe rellenar la fecha de lanzamiento del juego
+                        </div>
+
+                    </div>
                 </div>
                 
             </div>
@@ -28,7 +44,14 @@
 
                 <label for="precio" class="col-form-label col-sm-3">Precio</label>
                 <div class="card-body text-primary">
-                    <input name="precio" type="number" min="0" class="form-control" [(ngModel)]="juego.precio" >
+                    <input name="precio" type="number" min="0" class="form-control" [(ngModel)]="juego.precio" required #precio="ngModel">
+                    <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+                    
+                        <div *ngIf="precio.errors.required">
+                        Debe rellenar el precio del juego
+                        </div>
+
+                    </div>
                 </div>
                 
             </div>
@@ -37,7 +60,18 @@
 
                 <label for="pegi" class="col-form-label col-sm-3">PEGI</label>
                 <div class="card-body text-primary">
-                    <input name="pegi" type="number" max="18" class="form-control" [(ngModel)]="juego.pegi" >
+                    <input name="pegi" type="number" max="18" class="form-control" pattern="[0-9]*" [(ngModel)]="juego.pegi" required #pegi="ngModel">
+                    <div class="alert alert-danger" *ngIf="pegi.invalid && (pegi.dirty || pegi.touched)">
+                    
+                        <div *ngIf="pegi.errors.required">
+                            Debe rellenar el PEGI del juego
+                        </div>
+
+                        <div *ngIf="pegi.errors.pattern">
+                            PEGI debe ser un numero positivo
+                        </div>
+
+                    </div>
                 </div>
                 
             </div>
@@ -46,9 +80,16 @@
 
                 <label for="categoria" class="col-form-label col-sm-3">Categoría</label>
                 <div class="col-sm-6">
-                    <select name="categoria"class="form-control" [(ngModel)]="juego.categoria" >
+                    <select name="categoria"class="form-control" [(ngModel)]="juego.categoria" required #categoria="ngModel">
                         <option *ngFor="let categoriaOption of categorias" [ngValue]="categoriaOption.value">{{categoriaOption.title}}</option>
                     </select>
+                    <div class="alert alert-danger" *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
+                    
+                        <div *ngIf="categoria.errors.required">
+                        Debe rellenar la categoría del juego
+                        </div>
+
+                    </div>
                 </div>
                 
             </div>
@@ -65,8 +106,9 @@
             </div>
 
             <div class="col-sm-6">
-                <button class="btn btn-primary" (click)="create()" *ngIf="!juego.idJuego">Crear</button>
-                <button class="btn btn-primary" (click)="update()" *ngIf="juego.idJuego">Editar</button>
+                <!--si no es valido se deshabilita el boton-->
+                <button class="btn btn-primary" (click)="create()" *ngIf="!juego.idJuego" [disabled]="!juegoForm.form.valid">Crear</button>
+                <button class="btn btn-primary" (click)="update()" *ngIf="juego.idJuego" [disabled]="!juegoForm.form.valid">Editar</button>
                 <button class="btn btn-secondary ml-2" routerLink="/juegos" type="button">Cancelar</button>
             </div>
 

@@ -27,8 +27,8 @@
 
                       <td>{{company.nombre}}</td>
                       <td>{{company.cif}}</td>
-                      <!--para poner , entre las palabras-->
-                      <td> <span *ngFor="let juego of company.juegos; index as i">{{juego.titulo}} {{(company.juegos.length > 1 && i < company.juegos.length - 1) ? ', ' : ''}}</span></td>
+                      <!--para poner , entre las palabras--><!-- link en juegos-->
+                      <td> <span *ngFor="let juego of company.juegos; index as i"><a [routerLink]="['/juegos/form', juego.idJuego]">{{juego.titulo}}</a> {{(company.juegos.length > 1 && i < company.juegos.length - 1) ? ', ' : ''}}</span></td>
                     </tr>
               </tbody>
   
