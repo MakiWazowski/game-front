@@ -36,7 +36,7 @@ delete(juego: Juego): void {
   if(confirm(`¿Está seguro que desea eliminar el juego "${juego.titulo}"?`)) {
     this.juegoService.deleteJuego(juego.idJuego).subscribe(
       response => {
-        this.alertService.success(`Se ha boorado correctamente el juego "${juego.titulo}" con ID: ${juego.idJuego}`, {autoClose: true});
+        this.alertService.success(`Se ha borrado correctamente el juego "${juego.titulo}" con ID: ${juego.idJuego}`, {autoClose: true});
         this.refreshJuegos();
       }
     );
