@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="card bg-light">
+    <div class="card-header ">Login</div>
+    <div class="card-body text-primary">
+        
+        <form #juegoForm="ngForm">
+
+            <div class="form-group row">
+
+                <label for="username" class="col-form-label col-sm-3">Usuario</label>
+                <div class="card-body text-primary">
+                    <!--[(ngModel)] es una propiedad para actualizar los datos de una variable/objeto definido en el componente, es bidireccional-->
+                    <input name="username" type="text" class="form-control" [(ngModel)]="credentials.username" placeholder="usuario" maxlength="255" required #username="ngModel">
+                    <!--para que tengan que rellenar el titulo y mensaje-->
+                    <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                    
+                        <div *ngIf="username.errors.required">
+                        Debe rellenar el nombre de usuario
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label for="password" class="col-form-label col-sm-3">Contraseña</label>
+                <div class="card-body text-primary">
+                    <!--[(ngModel)] es una propiedad para actualizar los datos de una variable/objeto definido en el componente, es bidireccional-->
+                    <input name="password" type="password" class="form-control" [(ngModel)]="credentials.password" placeholder="contraseña" maxlength="255" required #password="ngModel">
+                    <!--para que tengan que rellenar el titulo y mensaje-->
+                    <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    
+                        <div *ngIf="password.errors.required">
+                        Debe rellenar la contraseña
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-9"></div>
+                <div class="col-sm-1">
+                    <button class="btn btn-primary" (click)="login()"[disabled]="!juegoForm.form.valid">Acceder</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

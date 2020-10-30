@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent as JuegosFormComponent } from './juegos/form.component';
 import { CompanyService } from './companies/company.service';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 
 //constante de enrutador
@@ -23,7 +24,8 @@ const ROUTES : Routes = [
   {path: 'juegos/form' , component: JuegosFormComponent},
   //si damos un numero le añadimos a la ruta un id
   {path: 'juegos/form/:id' , component: JuegosFormComponent},
-  {path: 'companies' , component: CompaniesComponent}
+  {path: 'companies' , component: CompaniesComponent},
+  {path: 'login' , component: LoginComponent}
 ]
 
 @NgModule({
@@ -48,7 +50,7 @@ const ROUTES : Routes = [
     FormsModule
   ],
   //declaramos los servicios
-  providers: [JuegoService,CompanyService],
+  providers: [JuegoService,CompanyService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
