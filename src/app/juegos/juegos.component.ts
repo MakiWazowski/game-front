@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '../alert/alert.service';
 import { Juego } from './juego';
 import { JuegoService } from './juego.service';
 
@@ -16,7 +17,7 @@ showId: boolean= false;
 juegos:Juego[];
 
 //declaramos el servicio de juego en el constructor
-  constructor(private juegoService: JuegoService) {
+  constructor(private juegoService: JuegoService,private alertService: AlertService) {
 
    }
 
@@ -26,7 +27,24 @@ switchId(): void {
 }
 
 //cuando el componente se inicializa (JuegosComponent)
-  ngOnInit(): void {
+ngOnInit(): void {
+  this.refreshJuegos();
+}
+
+//para eliminar los juegos y asegurar por mensaje
+delete(juego: Juego): void {
+  if(confirm(`¿Está seguro que desea eliminar el juego "${juego.titulo}"?`)) {
+    this.juegoService.deleteJuego(juego.idJuego).subscribe(
+      response => {
+        this.alertService.success(`Se ha boorado correctamente el juego "${juego.titulo}" con ID: ${juego.idJuego}`, {autoClose: true});
+        this.refreshJuegos();
+      }
+    );
+  }
+}
+
+//para refrescar los juegos
+  private refreshJuegos(): void{
     //iniciamos variable juego
     this.juegoService.getJuegos().subscribe(
       //el subscribe cuando ya ese observable tiene valor(la peticion termina)entra aqui
@@ -34,5 +52,6 @@ switchId(): void {
       listJuegos => this.juegos = listJuegos
     );
   }
+
 
 }
